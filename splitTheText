@@ -1,0 +1,25 @@
+f = open("input.txt", "r", encoding= "utf-8")
+text = f.read()
+
+out = open("output.txt", "w", encoding= "utf-8")
+word = ''
+i = 0
+
+while i < len(text):
+    char = text[i]
+
+    if (("a" <= char <= "z") or ("A" <= char <= "Z") or ("а" <= char <= "я") or ("А" <= char <= "Я") or ("0" <= char <= "9") or (char != ' ' and char != '\n' and char != '\t')):
+        word += char
+    else:
+        if word != '':
+            out.write(word +'\n')
+            word = ''
+
+#        if char != ' ' and char != '\n' and char != '\t':
+#            out.write(char + '\n')
+    i += 1
+
+if word != '':
+    out.write(word)
+
+out.close()
