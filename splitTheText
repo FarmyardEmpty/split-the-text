@@ -108,5 +108,43 @@ print(sum10_probability, "Вероятность суммы 10")
 print(sum11_probability, "Вероятность суммы 11")
 print(sum12_probability, "Вероятность суммы 12")
 
+import random
+import math
+append = 1000
+people_count = 28
+birthdays = []
+duplicates_arround = 0
+for i in range(append):
+    for _ in range(people_count):
+        month = random.randint(1, 12)
+        day = random.randint(1, 30)
+
+        date_str = f"{month:02d}.{day:02d}"
+        birthdays.append(date_str)
+
+
+    seen = set()
+    duplicates = []
+
+    for date in birthdays:
+        if date in seen:
+            if date not in duplicates:
+                duplicates.append(date)
+        else:
+            seen.add(date)
+
+    if duplicates:
+        duplicates_arround += 1
+    else:
+        print("Совпадений нет")
+
+true_probability = 1
+for i in range(people_count):
+    true_probability *= (366 - i) / 365
+false_probability = math.fabs(1 - true_probability)
+print(false_probability, 'Вероятность, что даты совпадут')
+
+print(duplicates_arround)
+
 
 '''
